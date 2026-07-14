@@ -8,7 +8,9 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Docker-Supported-2496ED?logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/Windows-Agent-Supported-0078D4?logo=windows&logoColor=white" alt="Windows Agent">
+  <img src="[https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white](https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white)" alt="SQLite">
+  <img src="[https://img.shields.io/badge/Windows-Agent-Supported-0078D4?logo=windows&logoColor=white](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)" alt="Windows">
+  <img src="[https://img.shields.io/badge/Windows-Agent-Supported-0078D4?logo=windows&logoColor=white](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)" alt="Linux">
   <img src="https://img.shields.io/badge/Languages-English%20%7C%20Türkçe-7C3AED" alt="Languages">
   <img src="https://img.shields.io/badge/Deployment-Private%20Container-111827" alt="Private Container">
 </p>
