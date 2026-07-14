@@ -1,0 +1,39 @@
+services:
+  app:
+    image: ${NEXUSIT_IMAGE:?Set NEXUSIT_IMAGE}:${NEXUSIT_VERSION:-latest}
+    container_name: nexusit-app
+    restart: unless-stopped
+    pull_policy: always
+    environment:
+      NEXUSIT_AUTO_RESTART: "1"
+      CONFIG_DIR: /app/config
+      UPLOAD_DIR: /app/data/uploads
+    ports:
+      - "${NEXUSIT_PORT:-5000}:5000"
+    volumes:
+      - nexusit_config:/app/config
+      - nexusit_uploads:/app/app/static/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    container_name: nexusit-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-nexusit}
+      POSTGRES_USER: ${POSTGRES_USER:-nexusit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    volumes:
+      - nexusit_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nexusit} -d ${POSTGRES_DB:-nexusit}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  nexusit_postgres:
+  nexusit_config:
+  nexusit_uploads:
