@@ -82,7 +82,11 @@ The application runs from a private Docker image. PostgreSQL data, uploaded file
 
 ```bash
 git clone https://github.com/shotlasts/OpernixITSM.git
+<<<<<<< HEAD
 cd OpernixITSM
+=======
+cd opernixit-deploy
+>>>>>>> fc49a2bbef1d057ad1193e02d2756d1170933fd3
 ```
 
 ### 2. Create the environment file
@@ -96,7 +100,10 @@ Edit `.env`:
 ```env
 OPERNIXIT_IMAGE=ghcr.io/shotlasts/opernixit
 OPERNIXIT_VERSION=1.0.0
+<<<<<<< HEAD
 OPERNIXIT_PORT=5000
+=======
+>>>>>>> fc49a2bbef1d057ad1193e02d2756d1170933fd3
 
 POSTGRES_DB=opernixit
 POSTGRES_USER=opernixit
@@ -294,14 +301,22 @@ opernixit-deploy/
 Create a PostgreSQL backup:
 
 ```bash
+<<<<<<< HEAD
 docker compose -f docker-compose.yml exec -T db \
+=======
+docker compose -f docker-compose.private.yml exec -T db \
+>>>>>>> fc49a2bbef1d057ad1193e02d2756d1170933fd3
   pg_dump -U opernixit opernixit > opernixit-backup.sql
 ```
 
 Restore a backup:
 
 ```bash
+<<<<<<< HEAD
 cat opernixit-backup.sql | docker compose -f docker-compose.yml exec -T db \
+=======
+cat opernixit-backup.sql | docker compose -f docker-compose.private.yml exec -T db \
+>>>>>>> fc49a2bbef1d057ad1193e02d2756d1170933fd3
   psql -U opernixit -d opernixit
 ```
 
