@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">NexusIT</h1>
+  <h1 align="center">OpernixIT</h1>
   <p align="center">
     Self-hosted IT Service Management, Asset Management and Endpoint Operations Platform
   </p>
@@ -16,11 +16,11 @@
 </p>
 
 > [!IMPORTANT]
-> This repository contains deployment files only. The NexusIT application source code is not included. Application images are distributed through a private container registry.
+> This repository contains deployment files only. The OpernixIT application source code is not included. Application images are distributed through a private container registry.
 
 ## Overview
 
-NexusIT is a self-hosted IT management platform designed for internal IT teams. It combines helpdesk operations, access requests, asset tracking, endpoint monitoring and operational reporting in a single interface.
+OpernixIT is a self-hosted IT management platform designed for internal IT teams. It combines helpdesk operations, access requests, asset tracking, endpoint monitoring and operational reporting in a single interface.
 
 Core capabilities include:
 
@@ -41,13 +41,13 @@ Core capabilities include:
 ### Executive Dashboard
 
 <p align="center">
-  <img src="docs/img/dashboard.png" alt="NexusIT Executive Dashboard" width="100%">
+  <img src="docs/img/dashboard.png" alt="OpernixIT Executive Dashboard" width="100%">
 </p>
 
 ### Ticket and Operations View
 
 <p align="center">
-  <img src="docs/img/dashboard2.png" alt="NexusIT Ticket and Operations View" width="100%">
+  <img src="docs/img/dashboard2.png" alt="OpernixIT Ticket and Operations View" width="100%">
 </p>
 
 ## Deployment Architecture
@@ -56,7 +56,7 @@ Core capabilities include:
 Users
   │
   ▼
-NexusIT Web Application
+OpernixIT Web Application
   │
   ├── PostgreSQL Database
   ├── Persistent Upload Storage
@@ -71,7 +71,7 @@ The application runs from a private Docker image. PostgreSQL data, uploaded file
 - Linux server
 - Docker Engine 24 or newer
 - Docker Compose v2
-- Access to the private NexusIT container registry
+- Access to the private OpernixIT container registry
 - Minimum 2 CPU cores
 - Minimum 4 GB RAM
 - Minimum 20 GB free disk space
@@ -81,8 +81,8 @@ The application runs from a private Docker image. PostgreSQL data, uploaded file
 ### 1. Clone the deployment repository
 
 ```bash
-git clone https://github.com/shotlasts/nexusit-deploy.git
-cd nexusit-deploy
+git clone https://github.com/shotlasts/OpernixITSM.git
+cd opernixit-deploy
 ```
 
 ### 2. Create the environment file
@@ -94,11 +94,11 @@ cp .env.example .env
 Edit `.env`:
 
 ```env
-NEXUSIT_IMAGE=ghcr.io/shotlasts/nexusit
-NEXUSIT_VERSION=1.0.0
+OPERNIXIT_IMAGE=ghcr.io/shotlasts/opernixit
+OPERNIXIT_VERSION=1.0.0
 
-POSTGRES_DB=nexusit
-POSTGRES_USER=nexusit
+POSTGRES_DB=opernixit
+POSTGRES_USER=opernixit
 POSTGRES_PASSWORD=CHANGE_THIS_PASSWORD
 
 APP_PORT=5000
@@ -115,7 +115,7 @@ Create a GitHub token with permission to read packages, then run:
 echo "$GHCR_TOKEN" | docker login ghcr.io -u YOUR-USERNAME --password-stdin
 ```
 
-### 4. Start NexusIT
+### 4. Start OpernixIT
 
 ```bash
 docker compose -f docker-compose.private.yml up -d
@@ -143,12 +143,12 @@ During the first setup you can configure:
 - Support e-mail address
 - Basic application settings
 
-## Updating NexusIT
+## Updating OpernixIT
 
 Set the new version in `.env`:
 
 ```env
-NEXUSIT_VERSION=1.0.1
+OPERNIXIT_VERSION=1.0.1
 ```
 
 Pull and apply the update:
@@ -189,13 +189,13 @@ Restart the application:
 docker compose -f docker-compose.private.yml restart app
 ```
 
-Stop NexusIT without deleting data:
+Stop OpernixIT without deleting data:
 
 ```bash
 docker compose -f docker-compose.private.yml down
 ```
 
-Start NexusIT again:
+Start OpernixIT again:
 
 ```bash
 docker compose -f docker-compose.private.yml up -d
@@ -203,7 +203,7 @@ docker compose -f docker-compose.private.yml up -d
 
 ## Windows Agent Installation
 
-The Windows agent collects endpoint inventory and health information and sends it to the NexusIT server.
+The Windows agent collects endpoint inventory and health information and sends it to the OpernixIT server.
 
 Run PowerShell as Administrator:
 
@@ -215,15 +215,15 @@ Install the agent:
 
 ```powershell
 .\scripts\install-agent.ps1 `
-  -PackageUrl "https://downloads.example.com/NexusITAgent-1.0.0.zip" `
-  -ServerUrl "https://nexusit.example.com" `
+  -PackageUrl "https://downloads.example.com/OpernixITAgent-1.0.0.zip" `
+  -ServerUrl "https://opernixit.example.com" `
   -AgentKey "YOUR-AGENT-KEY"
 ```
 
 The installer:
 
-- Installs the agent under `C:\Program Files\NexusIT Agent`
-- Creates the `NexusITAgent` Windows service
+- Installs the agent under `C:\Program Files\OpernixIT Agent`
+- Creates the `OpernixITAgent` Windows service
 - Enables delayed automatic startup
 - Restarts the service automatically after failures
 - Creates the agent configuration file
@@ -232,19 +232,19 @@ The installer:
 Check the service:
 
 ```powershell
-Get-Service NexusITAgent
+Get-Service OpernixITAgent
 ```
 
 Restart the service:
 
 ```powershell
-Restart-Service NexusITAgent
+Restart-Service OpernixITAgent
 ```
 
 Read the error log:
 
 ```powershell
-Get-Content "C:\Program Files\NexusIT Agent\agent-service-error.log" -Tail 100
+Get-Content "C:\Program Files\OpernixIT Agent\agent-service-error.log" -Tail 100
 ```
 
 ## Domain Deployment
@@ -256,7 +256,7 @@ Recommended approach:
 1. Store the agent package on a protected internal file share.
 2. Keep the installation script in a read-only deployment folder.
 3. Deploy the script through `Computer Configuration → Windows Settings → Scripts → Startup`.
-4. Use HTTPS for communication with the NexusIT server.
+4. Use HTTPS for communication with the OpernixIT server.
 5. Rotate agent keys periodically.
 6. Do not publish agent keys in GitHub repositories.
 
@@ -270,12 +270,12 @@ Recommended approach:
 - Restrict PostgreSQL access to the Docker network.
 - Use read-only registry tokens for customer deployments.
 - Back up PostgreSQL volumes regularly.
-- Apply signed NexusIT update packages only.
+- Apply signed OpernixIT update packages only.
 
 ## Repository Structure
 
 ```text
-nexusit-deploy/
+opernixit-deploy/
 ├── README.md
 ├── .env.example
 ├── docker-compose.private.yml
@@ -285,7 +285,7 @@ nexusit-deploy/
 │       └── dashboard2.png
 └── scripts/
     ├── install-agent.ps1
-    └── update-nexusit.sh
+    └── update-opernixit.sh
 ```
 
 ## Backup
@@ -294,14 +294,14 @@ Create a PostgreSQL backup:
 
 ```bash
 docker compose -f docker-compose.private.yml exec -T db \
-  pg_dump -U nexusit nexusit > nexusit-backup.sql
+  pg_dump -U opernixit opernixit > opernixit-backup.sql
 ```
 
 Restore a backup:
 
 ```bash
-cat nexusit-backup.sql | docker compose -f docker-compose.private.yml exec -T db \
-  psql -U nexusit -d nexusit
+cat opernixit-backup.sql | docker compose -f docker-compose.private.yml exec -T db \
+  psql -U opernixit -d opernixit
 ```
 
 Store backups outside the application server whenever possible.
@@ -316,7 +316,7 @@ helpdesk@your-domain.com
 
 ## License
 
-NexusIT is proprietary software. Deployment files in this repository do not grant access to the application source code, container image or commercial license.
+OpernixIT is proprietary software. Deployment files in this repository do not grant access to the application source code, container image or commercial license.
 
 Unauthorized copying, redistribution, reverse engineering or resale is prohibited.
 
