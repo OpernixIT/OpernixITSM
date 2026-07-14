@@ -4,4 +4,4 @@ set -euo pipefail
 docker compose pull
 docker compose up -d --remove-orphans
 docker image prune -f
-echo "NexusIT containers updated. Database volumes were preserved."
+echo "OpernixIT containers updated. Database volumes were preserved."

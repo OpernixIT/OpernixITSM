@@ -1,4 +1,4 @@
-# NexusIT Agent installation
+# OpernixIT Agent installation
 
 The public repository must not contain the agent Python source or the agent key. Publish the compiled agent ZIP as a **private GitHub Release asset** or on an authenticated download server.
 
@@ -6,7 +6,7 @@ The public repository must not contain the agent Python source or the agent key.
 
 ```text
 package/
-  NexusITAgent.exe
+  OpernixITAgent.exe
   nssm.exe
 ```
 
@@ -24,7 +24,7 @@ build_agent_exe.bat
 Copy these files into `package/` and create a ZIP:
 
 ```text
-agent/dist/NexusITAgent.exe
+agent/dist/OpernixITAgent.exe
 agent/nssm.exe
 ```
 
@@ -37,16 +37,16 @@ Open PowerShell as Administrator in this deployment repository:
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process
 .\scripts\install-agent.ps1 `
-  -PackageUrl "https://YOUR-AUTHENTICATED-DOWNLOAD/NexusITAgent-1.0.0.zip" `
-  -ServerUrl "https://nexusit.company.example" `
-  -AgentKey "THE_KEY_CREATED_IN_NEXUSIT"
+  -PackageUrl "https://YOUR-AUTHENTICATED-DOWNLOAD/OpernixITAgent-1.0.0.zip" `
+  -ServerUrl "https://opernixit.company.example" `
+  -AgentKey "THE_KEY_CREATED_IN_OPERNIXIT"
 ```
 
 Check the service:
 
 ```powershell
-Get-Service NexusITAgent
-Get-Content "C:\Program Files\NexusIT Agent\agent-service-error.log" -Tail 100
+Get-Service OpernixITAgent
+Get-Content "C:\Program Files\OpernixIT Agent\agent-service-error.log" -Tail 100
 ```
 
 ## Domain deployment
