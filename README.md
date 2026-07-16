@@ -10,7 +10,7 @@ Helpdesk, asset management, access workflows and endpoint operations in one cent
 [![Docker](https://img.shields.io/badge/Docker-Supported-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://github.com/ShotLastS/OpernixITSM)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Linux](https://img.shields.io/badge/Linux-Supported-FCC624?style=for-the-badge&logo=linux&logoColor=black)](#requirements)
-[![Windows Agent](https://img.shields.io/badge/Windows-Agent-0078D6?style=for-the-badge&logo=windows11&logoColor=white)](#windows-agent)
+[![Windows](https://img.shields.io/badge/Windows-Installer%20%7C%20Agent-0078D6?style=for-the-badge&logo=windows11&logoColor=white)](#windows-installation)
 [![Languages](https://img.shields.io/badge/Language-English%20%7C%20Türkçe-7C3AED?style=for-the-badge)](#features)
 
 </div>
@@ -423,6 +423,74 @@ docker compose exec -T db \
 Back up the database, runtime configuration and uploaded files regularly.
 
 Store backup copies outside the OpernixIT server whenever possible.
+
+
+## Windows Installation
+
+OpernixIT also provides a Windows installer for local or server-based deployments.
+
+### Requirements
+
+- Windows 10, Windows 11, Windows Server 2019 or newer
+- Administrator privileges
+- At least 4 GB RAM
+- At least 20 GB free disk space
+- Network access for browser-based use and updates
+
+### Installation Steps
+
+1. Download the latest Windows installer from the official OpernixIT website or the GitHub Releases page.
+2. Right-click the installer and select **Run as administrator**.
+3. Follow the installation wizard.
+4. Select the installation directory.
+5. Complete the installation.
+6. Launch OpernixIT from the Start Menu or desktop shortcut.
+
+The default installation directory is:
+
+```text
+C:\Program Files\OpernixIT
+```
+
+After installation, open OpernixIT from the desktop shortcut or Start Menu.
+
+> [!WARNING]
+> **Windows SmartScreen Notice**
+>
+> The current OpernixIT Windows installer is signed with a self-signed certificate.
+> Windows may display a **Windows protected your PC** or **Unknown publisher** warning during installation.
+>
+> To continue:
+>
+> 1. Click **More info**
+> 2. Click **Run anyway**
+>
+> Only download the installer from the official OpernixIT website or the official GitHub repository.
+>
+> Official website: [https://opernixit.com](https://opernixit.com)
+
+### Verify the Installer
+
+You can verify the installer hash with PowerShell:
+
+```powershell
+Get-FileHash .\OpernixIT-Setup-1.0.0.exe -Algorithm SHA256
+```
+
+Compare the displayed SHA-256 value with the checksum published on the official download page or GitHub release.
+
+### Uninstalling OpernixIT
+
+Open:
+
+```text
+Settings
+└── Apps
+    └── Installed apps
+        └── OpernixIT
+```
+
+Select **Uninstall** and follow the removal wizard.
 
 ## Windows Agent
 
